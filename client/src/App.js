@@ -37,12 +37,9 @@ import UpdateUser from './Components/Admin/UpdateUser';
 import ProductReviews from './Components/Admin/ProductReviews';
 
 
-
-
 function App() {
  
 
- 
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const [stripeApiKey, setStripeApiKey] = useState("");
