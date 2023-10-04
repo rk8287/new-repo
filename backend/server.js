@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 const app = require('./app');
 const ConnectDatabase = require('./config/database');
 const cloudinary = require("cloudinary");
+const dotenv = require('dotenv')
 
 // Load environment variables
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "backend/config/config.env" });
-}
+
+  dotenv.config({ path: "backend/config/config.env" });
+
 
 // Connect to the database
 ConnectDatabase();

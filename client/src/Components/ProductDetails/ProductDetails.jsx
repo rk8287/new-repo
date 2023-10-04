@@ -135,7 +135,7 @@ const ProductDetails = ({ match }) => {
                     <button onClick={increaseQuantity}>+</button>
                   </div>
                   <button
-                    disabled={product.Stock < 1 ? true : false}
+                    disabled={product.stock < 1 ? true : false}
                     onClick={addToCartHandler}
                   >
                     Add to Cart
