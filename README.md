@@ -40,5 +40,3 @@ CLOUDINARY_API_SECRET
 _fill each filed with your info respectively_
 
 ## Author
-
-
