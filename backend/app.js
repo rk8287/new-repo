@@ -27,7 +27,7 @@ app.use(express.static(clientBuildPath));
 
 // Catch-all route to serve 'index.html' for frontend routing
 app.get('*', (req, res) => {
-  const indexPath = path.join(clientBuildPath, 'index.html');
+  const indexPath = path.join(__dirname, 'build', 'index.html');
   res.sendFile(indexPath);
 });
 
