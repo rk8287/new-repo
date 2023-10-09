@@ -1,5 +1,5 @@
 import axios from 'axios';
-const backendUrl = 'https://my-ecommerce-xwc5.onrender.com';
+
 
 import {
     ALL_PRODUCT_FAIL,
@@ -39,12 +39,12 @@ import {
             type: ALL_PRODUCT_REQUEST
         });
 
-        let link = `${backendUrl}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`
+        let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`
 
         //For category FIlter
 
         if(category){
-            link =  `${backendUrl}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`
+            link =  `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`
         }
 
         const {data} = await axios.get(link);
