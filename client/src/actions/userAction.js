@@ -42,7 +42,7 @@ export const login = (email, password) => async (dispatch) => {
       const config = { headers: { "Content-Type": "application/json" } };
   
       const { data } = await axios.post(
-        `/api/v1/login`,
+        `https://my-ecommerce-xwc5.onrender.com/api/v1/login`,
         { email, password },
         config
       );
