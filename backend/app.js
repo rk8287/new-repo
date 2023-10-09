@@ -22,11 +22,7 @@ const order = require('./routes/orderRoute');
 const payment = require('./routes/paymentRoute');
 
 
-app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
-});
 
 
 // Middleware for handling errors
