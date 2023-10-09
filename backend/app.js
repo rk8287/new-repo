@@ -21,14 +21,11 @@ const user = require('./routes/userRoute');
 const order = require('./routes/orderRoute');
 const payment = require('./routes/paymentRoute');
 
-// Serve static files (including 'index.html') from the 'client/build' directory
-const clientBuildPath = path.join(__dirname, 'client', 'build');
-app.use(express.static(clientBuildPath));
 
-// Catch-all route to serve 'index.html' for frontend routing
-app.get('*', (req, res) => {
-  const indexPath = path.join(clientBuildPath, 'index.html'); // Use clientBuildPath
-  res.sendFile(indexPath);
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
 });
 
 
