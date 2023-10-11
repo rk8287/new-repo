@@ -28,11 +28,6 @@ app.use('/api/v1',user)
 app.use('/api/v1',order)
 app.use('/api/v1',payment)
 
-app.use(cors({
-  origin: 'https://your-netlify-app-url.netlify.app', // Replace with your Netlify app URL
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-}));
-
 // Middleware for handling errors
 app.use(errMiddleware);
 
