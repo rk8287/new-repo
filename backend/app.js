@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const path = require('path');
 const dotenv = require('dotenv');
-const cors = require('cors');
+
 
 
 // Load environment variables
