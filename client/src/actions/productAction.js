@@ -40,12 +40,12 @@ const apiUrl = 'https://my-ecommerce-xwc5.onrender.com/api/v1';
             type: ALL_PRODUCT_REQUEST
         });
 
-        let link = `${apiUrl}/products`?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`
+        let link = `${apiUrl}/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`
 
         //For category FIlter
 
         if(category){
-            link =  `${apiUrl}/products`?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`
+            link =  `${apiUrl}/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`
         }
 
         const {data} = await axios.get(link);
