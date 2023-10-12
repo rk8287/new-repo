@@ -5,9 +5,11 @@ import {
 } from "../constants/cartConstant";
 import axios from "axios";
 
+const apiUrl = 'https://my-ecommerce-xwc5.onrender.com/api/v1';
+
 // Add to Cart
 export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/v1/product/${id}`);
+  const { data } = await axios.get(`${apiUrl}/product/${id}`); // Use apiUrl here
 
   dispatch({
     type: ADD_TO_CART,
