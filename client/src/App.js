@@ -36,7 +36,7 @@ import UsersList from './Components/Admin/UserList';
 import UpdateUser from './Components/Admin/UpdateUser';
 import ProductReviews from './Components/Admin/ProductReviews';
 
-
+const apiUrl = 'https://my-ecommerce-xwc5.onrender.com/api/v1';
 function App() {
  
 
@@ -47,7 +47,7 @@ function App() {
  
   
     try {
-      const { data } = await axios.get("/api/v1/stripeapikey");
+        const { data } = await axios.get(`${apiUrl}/stripeapikey`); 
       setStripeApiKey(data.stripeApiKey);
     } catch (error) {
       // Handle the error here
