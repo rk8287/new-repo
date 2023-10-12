@@ -62,12 +62,13 @@ const Payment = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/v1/payment/process",
+        `${apiUrl}/payment/process`,
         paymentData,
         config
       );
 
       const client_secret = data.client_secret;
+      const apiUrl = "https://my-ecommerce-xwc5.onrender.com/api/v1"
 
       if (!stripe || !elements) return;
 
