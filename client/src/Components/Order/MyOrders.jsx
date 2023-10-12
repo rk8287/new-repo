@@ -4,12 +4,14 @@ import "./MyOrders.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, myOrders } from "../../actions/orderAction";
 import { Link } from "react-router-dom";
-import {MdLaunch} from "react-icons/md";
-import { toast } from 'react-toastify'; // Import the 'toast' function from react-toastify
-import 'react-toastify/dist/ReactToastify.css'; // Don't forget to import the CSS for styling
+import { MdLaunch } from "react-icons/md";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import MetaData from "../Layout/MetaData";
 import { Typography } from "@mui/material";
 import Loader from "../Layout/Loader/Loader";
+
+const apiUrl = 'https://my-ecommerce-xwc5.onrender.com/api/v1';
 
 const MyOrders = () => {
   const dispatch = useDispatch();
@@ -29,8 +31,6 @@ const MyOrders = () => {
       },
     },
     
-    
-
     {
       field: "itemsQty",
       headerName: "Items Qty",
@@ -56,13 +56,14 @@ const MyOrders = () => {
       sortable: false,
       renderCell: (params) => {
         return (
-          <Link to={`/order/${params.row.id}`}>
+          <Link to={`${apiUrl}/order/${params.row.id}`}> {/* Update the URL */}
             <MdLaunch />
           </Link>
         );
       },
     },
   ];
+
   const rows = [];
 
   orders &&
