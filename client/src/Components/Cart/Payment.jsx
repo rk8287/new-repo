@@ -39,7 +39,7 @@ const Payment = () => {
 
   const fetchStripeApiKey = async () => {
     try {
-      const response = await axios.get(`apiUrl/stripeapikey`); // Replace 'your-api-url'
+      const response = await axios.get(`${apiUrl}/stripeapikey`); // Replace 'your-api-url'
       setStripeApiKey(response.data.stripeApiKey);
     } catch (error) {
       console.error("Error fetching Stripe API key:", error);
