@@ -73,7 +73,7 @@ export const createProduct = (productData) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `/api/v1/admin/product/new`,
+      `${apiUrl}/admin/product/new`,
       productData,
       config
     );
@@ -101,7 +101,7 @@ export const createProduct = (productData) => async (dispatch) => {
             type: PRODUCT_DETAILS_REQUEST
         });
 
-        const {data} = await axios.get(`/api/v1/product/${id}`)
+        const {data} = await axios.get(`${apiUrl}/product/${id}`)
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
