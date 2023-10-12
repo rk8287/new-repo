@@ -12,7 +12,7 @@ const cors = require('cors'); // Import the cors middleware
 dotenv.config({ path: 'backend/config/config.env' });
 
 app.use(express.json({ limit: '10mb' }));
-app.use(cookieParser();
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use(fileUpload());
 
