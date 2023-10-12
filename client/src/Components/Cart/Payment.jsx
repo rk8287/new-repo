@@ -50,6 +50,7 @@ const Payment = () => {
     totalPrice: orderInfo.totalPrice,
   };
 
+   const apiUrl = 'https://my-ecommerce-xwc5.onrender.com/api/v1'
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -68,7 +69,7 @@ const Payment = () => {
       );
 
       const client_secret = data.client_secret;
-      const apiUrl = "https://my-ecommerce-xwc5.onrender.com/api/v1"
+     
 
       if (!stripe || !elements) return;
 
