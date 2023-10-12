@@ -1,9 +1,11 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from 'react-toastify'; // Import the 'toast' function from react-toastify
+import 'react-toastify/dist/ReactToastify.css'; // Don't forget to import the CSS for styling
+
+
 import {
   CardNumberElement,
   CardCvcElement,
@@ -11,18 +13,19 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+
 import axios from "axios";
 import "./Payment.css";
-import { AiOutlineCreditCard } from "react-icons/ai";
-import { BsCalendar3EventFill } from "react-icons/bs";
-import { MdVpnKey } from "react-icons/md";
+import {AiOutlineCreditCard} from "react-icons/ai";
+import {BsCalendar3EventFill} from "react-icons/bs";
+import {MdVpnKey} from "react-icons/md";
 import { clearErrors } from "../../actions/userAction";
 import MetaData from "../Layout/MetaData";
 import { useNavigate } from "react-router-dom";
 import { createOrder } from "../../actions/orderAction";
 
 const Payment = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
 
   const dispatch = useDispatch();
@@ -33,23 +36,6 @@ const Payment = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const { error } = useSelector((state) => state.newOrder);
-    const apiUrl = 'https://my-ecommerce-xwc5.onrender.com/api/v1';
-
-  const [stripeApiKey, setStripeApiKey] = useState(""); // Added state for the Stripe API key
-
-  const fetchStripeApiKey = async () => {
-    try {
-      const response = await axios.get(`${apiUrl}/stripeapikey`); // Replace 'your-api-url'
-      setStripeApiKey(response.data.stripeApiKey);
-    } catch (error) {
-      console.error("Error fetching Stripe API key:", error);
-      // Handle the error gracefully
-    }
-  };
-
-  useEffect(() => {
-    fetchStripeApiKey(); // Fetch the Stripe API key when the component mounts
-  }, []);
 
   const paymentData = {
     amount: Math.round(orderInfo.totalPrice * 100),
@@ -69,13 +55,6 @@ const Payment = () => {
 
     payBtn.current.disabled = true;
 
-    if (!stripe || !elements || !stripeApiKey) {
-      return;
-    }
-
-    // Initialize Stripe with the Stripe API key
-    const stripeInstance = stripe(stripeApiKey);
-
     try {
       const config = {
         headers: {
@@ -83,14 +62,16 @@ const Payment = () => {
         },
       };
       const { data } = await axios.post(
-        `${apiUrl}/payment/process`,
+        "/api/v1/payment/process",
         paymentData,
         config
       );
 
       const client_secret = data.client_secret;
 
-      const result = await stripeInstance.confirmCardPayment(client_secret, {
+      if (!stripe || !elements) return;
+
+      const result = await stripe.confirmCardPayment(client_secret, {
         payment_method: {
           card: elements.getElement(CardNumberElement),
           billing_details: {
@@ -109,6 +90,7 @@ const Payment = () => {
 
       if (result.error) {
         payBtn.current.disabled = false;
+
         toast.error(result.error.message);
       } else {
         if (result.paymentIntent.status === "succeeded") {
@@ -118,9 +100,10 @@ const Payment = () => {
           };
 
           dispatch(createOrder(order));
+
           navigate("/success");
         } else {
-          toast.error("There's some issue while processing payment");
+          toast.error("There's some issue while processing payment ");
         }
       }
     } catch (error) {
@@ -167,6 +150,5 @@ const Payment = () => {
     </Fragment>
   );
 };
-
 
 export default Payment;
