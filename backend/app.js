@@ -18,7 +18,7 @@ app.use(fileUpload());
 
 // CORS configuration
 app.use(cors({
-  origin: 'https://ecommerce-web-app-8qzg.onrender.com', // Replace with your frontend URL
+  origin: 'https://timely-dusk-024f97.netlify.app', // Replace with your frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Enable cookies and credentials
 }));
