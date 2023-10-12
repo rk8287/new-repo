@@ -27,7 +27,8 @@ import { createOrder } from "../../actions/orderAction";
 const Payment = () => {
   const navigate = useNavigate()
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
-
+  const apiUrl = 'https://my-ecommerce-xwc5.onrender.com/api/v1';
+  
   const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
@@ -62,7 +63,7 @@ const Payment = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/v1/payment/process",
+        `${apiUrl}/payment/process`,
         paymentData,
         config
       );
