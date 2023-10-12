@@ -18,7 +18,7 @@ app.use(fileUpload());
 
 // CORS configuration
 app.use(cors({
-  origin: 'https://new-repo-e1xvklbn9-rounak8287-gmailcom.vercel.app', // Replace with your frontend URL
+  origin: 'https://ecommerce-web-app-8qzg.onrender.com', // Replace with your frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Enable cookies and credentials
 }));
