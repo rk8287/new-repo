@@ -20,6 +20,7 @@ import { clearErrors } from "../../actions/userAction";
 import MetaData from "../Layout/MetaData";
 import { useNavigate } from "react-router-dom";
 import { createOrder } from "../../actions/orderAction";
+import { loadStripe } from "@stripe/stripe-js"; // Import loadStripe
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -36,21 +37,22 @@ const Payment = () => {
 
   const apiUrl = 'https://my-ecommerce-xwc5.onrender.com/api/v1';
 
+  // Define stripePromise with your publishable key
+  const stripePromise = loadStripe('process.env.STRIPE_API_KEY');
+
   // Fetch the Stripe API key from your server
   const fetchStripeApiKey = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/stripeapikey`); // Replace 'your-api-url'
+      const response = await axios.get(`${apiUrl}/stripeapikey`);
       // Set the Stripe API key
       if (response.data.stripeApiKey) {
         stripePromise.setPublishableKey(response.data.stripeApiKey);
       }
     } catch (error) {
       console.error("Error fetching Stripe API key:", error);
-      // Handle the error gracefully
     }
   };
 
-  // Fetch the Stripe API key when the component mounts
   useEffect(() => {
     fetchStripeApiKey();
   }, []);
